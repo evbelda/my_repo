@@ -1,0 +1,71 @@
+@charset "utf-8";
+/* CSS Document */
+header {
+	text-align: center;
+	font-family: 'Pacifico', cursive;
+	font-size: 64px;
+	color: #2c2c2c;
+    background-color: #d5d5d5;
+    letter-spacing: .05em;
+    text-shadow: 
+    4px 4px 0px #d5d5d5, 
+    7px 7px 0px rgba(0, 0, 0, 0.2);
+}
+
+
+footer{
+	background-color: #333;
+	color: #FFF;
+	clear: both;
+	position: fixed;
+	height: 50px;
+	width: 100%;
+	bottom: 0px;
+	left: 0px;
+	line-height: 50px;
+	text-align: center;	
+}
+nav
+{
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center !important;
+}
+.menu{
+	background-color:#333;
+}
+a{
+	text-decoration:none !important;
+	color: #FFF !important;
+}
+
+.menu:hover {
+	 background-color: #F69;
+	 color: #FFF !important;
+	 /*text-decoration: none;*/
+
+}
+@media only screen and (max-width: 800px) {
+
+nav{
+	flex-direction: column;
+	width: 100%;	
+}
+.menu{
+	width: 230px;
+	height: 20px;
+}
+ 
+}
+@media only screen and (min-width: 800px) {
+nav{
+	flex-direction: row;
+	width: 100%;
+}
+.menu{
+	height: 20px;
+	width: 25%;
+}
+
+}
