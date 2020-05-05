@@ -1,0 +1,317 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Destrozator!!</title>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body class="contenedor">		
+		<audio id="motosierra" src="img/motosierra.mp3" loop></audio>
+		<audio id="espada" src="img/espada.mp3" loop></audio>
+		<audio id="tijera" src="img/tijera.mp3" loop></audio>
+		<div class="row text-center h-25">
+			<div class="col-7 row"> 
+				<div class="col-4">
+					<div class="col-12"><input type="radio" name="instrumento" id="">Motosierra</div>
+					<div class="col-12" id="imgMotosierra"><img src="img/motosierra.png" alt="" height="100%" width="100%"></div>
+				</div>
+				<div class="col-4">
+					<div class="col-12"><input type="radio" name="instrumento" id="">Espada Laser</div>
+					<div class="col-12" id="imgEspada"><img src="img/espada.png" alt="" height="100%" width="100%"></div>
+				</div>
+				<div class="col-4">
+					<div class="col-12"><input type="radio" name="instrumento" id="">Tijera</div>
+					<div class="col-12" id="imgTijera"><img src="img/tijera.png" alt="" height="100%" width="100%"></div>
+				</div>
+			</div>
+			<div class="col-4 jumbotron" id="mensaje"> Destrozeitor!!!</div>
+			<div class="col-1" id="dat">&nbsp;</div>	
+		</div>
+		<div class="row text-center h-50">
+			<div class="col-2">&nbsp;</div>
+			<div class="col-8 row fondo justify-content-center align-items-center min-vh-50">
+				<!--<div class="row ">-->
+					<div class="bg-primary letras">
+					El tren 
+					</div>
+					<div id="suj" class="bg-primary letras">
+					&nbsp; 
+					</div>
+					<div class="bg-primary letras">
+					llega 
+					</div>
+					<div id="comp" class="bg-primary letras">
+					&nbsp; 
+					</div>
+					<div class="bg-primary letras">
+					a la estacion	
+					</div>
+				<!--</div>-->
+				<!--<div class="frase align-content-center">Fase 2</div>-->
+			</div>
+			<div class="col-2">&nbsp;</div>	
+		</div>
+
+<script>
+	var x = 0;
+	var offsetX=0;
+	var y = 0;
+	var offsetY=0;
+	var arranque = 0;
+	var corte = 0;
+	var tamanho = 1;
+
+	window.onmousemove = function (){
+		x = window.event.clientX;
+		y = window.event.clientY;
+		/*document.getElementById("dat").innerHTML = x+"-"+y;*/
+		document.getElementById("dat").innerHTML = x +"-"+y;
+		if (arranque == 1)
+			{
+				// followCursor.run();
+			}
+	}	
+
+
+	function iniciacorte(){
+		corte = window.event.clientY;
+		
+
+	}
+	function cortarsuj(){
+			//corte ++;
+
+			//$("#image").stop().animate({left:window.event.pageX, top:window.event.pageY});
+			// sonarsonido();/*
+			document.getElementById("dat").innerHTML = corte+'-'+y;
+
+			//if (( window.event.clientY-corte)>=20)
+			if (( y-corte)>=20)
+				{
+					// alert("Has cortado el sujeto");
+					document.getElementById('mensaje').innerHTML = 'Has cortado bien el sujeto';
+					$("#suj").css("background-color", "yellow");
+				}
+
+		}
+	
+	function limpiar()
+		{
+			corte = 0;
+			// callarsonido();
+		}
+	
+	/*function getMouseCoords(e) {
+		 var e = e || window.event;
+
+	}*/
+
+document.getElementById('suj').addEventListener('mouseout', () => {
+	limpiar();
+	apagarSonido();
+});
+
+
+	
+if(tamanho == 1)
+{
+	document.getElementById('suj').addEventListener('click', () =>{
+		var inputs = document.getElementsByTagName('input');
+		iniciacorte();
+		if (inputs[0].checked == true) {
+			document.getElementById('motosierra').play();
+			setTimeout(apagarSonido,6000);
+			document.getElementById('mensaje').innerHTML = '<h3>Has cortado bien el sujeto</h3>';
+			$("#suj").css("background-color", "yellow");
+			$("#mensaje").css("background-color", "green");
+			/*document.getElementById('imgMotosierra').style.visibility = 'visible';*/
+		}
+		if (inputs[1].checked == true) {
+			document.getElementById('espada').play();
+			setTimeout(apagarSonido,6000);
+			document.getElementById('mensaje').innerHTML = '<h3>Error el monstruo se acerca</h3>';
+			$("#mensaje").css("background-color", "red");
+			/*document.getElementById('imgEspada').style.visibility = 'visible';*/
+		}
+		if (inputs[2].checked == true) {
+			document.getElementById('tijera').play();
+			setTimeout(apagarSonido,6000);
+			document.getElementById('mensaje').innerHTML = '<h3>Error el monstruo se acerca</h3>';
+			$("#mensaje").css("background-color", "red");
+			/*document.getElementById('imgTijera').style.visibility = 'visible';*/
+		}		
+		
+	});
+	/*document.getElementById('verb').addEventListener('click', () =>{
+		var inputs = document.getElementsByTagName('input');
+		iniciacorte();
+		if (inputs[0].checked == true) {
+			document.getElementById('motosierra').play();
+			setTimeout(apagarSonido,6000);
+			document.getElementById('mensaje').innerHTML = '<h3>Error el monstruo se acerca</h3>';
+			$("#suj").css("background-color", "yellow");
+			$("#mensaje").css("background-color", "green");
+			
+		}
+		if (inputs[1].checked == true) {
+			document.getElementById('espada').play();
+			setTimeout(apagarSonido,6000);
+			document.getElementById('mensaje').innerHTML = '<h3>Has cortado bien el verbo</h3>';
+			
+		}
+		if (inputs[2].checked == true) {
+			document.getElementById('tijera').play();
+			setTimeout(apagarSonido,6000);
+			document.getElementById('mensaje').innerHTML = '<h3>Error el monstruo se acerca</h3>';
+			
+		}		
+		
+	});*/
+	document.getElementById('comp').addEventListener('click', () =>{
+		var inputs = document.getElementsByTagName('input');
+		iniciacorte();
+		if (inputs[0].checked == true) {
+			document.getElementById('motosierra').play();
+			setTimeout(apagarSonido,6000);
+			document.getElementById('mensaje').innerHTML = '<h3>Error el monstruo se acerca</h3>';
+			$("#suj").css("background-color", "yellow");
+			$("#mensaje").css("background-color", "red");
+			/*document.getElementById('imgMotosierra').style.visibility = 'visible';*/
+		}
+		if (inputs[1].checked == true) {
+			document.getElementById('espada').play();
+			setTimeout(apagarSonido,6000);
+			document.getElementById('mensaje').innerHTML = '<h3>Error el monstruo se acerca</h3>';
+			$("#mensaje").css("background-color", "red");
+			/*document.getElementById('imgEspada').style.visibility = 'visible';*/
+		}
+		if (inputs[2].checked == true) {
+			document.getElementById('tijera').play();
+			setTimeout(apagarSonido,6000);
+			document.getElementById('mensaje').innerHTML = '<h3>Has cortado bien el complemento</h3>';
+			$("#mensaje").css("background-color", "green");
+			/*document.getElementById('imgTijera').style.visibility = 'visible';*/
+		}		
+		
+	});
+		
+}
+else{
+	document.getElementById('suj').addEventListener('mousemove', () => {
+		cortarsuj();
+	});
+	document.getElementById('suj').addEventListener('mouseover', () => {
+		var inputs = document.getElementsByTagName('input');
+		iniciacorte();
+		if (inputs[0].checked == true) {
+			document.getElementById('motosierra').play();
+			/*document.getElementById('imgMotosierra').style.visibility = 'visible';*/
+		}
+		if (inputs[1].checked == true) {
+			document.getElementById('espada').play();
+			/*document.getElementById('imgEspada').style.visibility = 'visible';*/
+		}
+		if (inputs[2].checked == true) {
+			document.getElementById('tijera').play();
+			/*document.getElementById('imgTijera').style.visibility = 'visible';*/
+		}
+	});
+}
+	
+	
+/*
+document.getElementById('suj').addEventListener('mouseout', ()=>{
+	
+});*/
+
+
+function apagarSonido()
+	{
+		document.getElementById('motosierra').pause();
+		document.getElementById('espada').pause();
+		document.getElementById('tijera').pause();
+	}
+	
+var ventana = window.matchMedia("(max-width: 812px)");
+eventosPulsado(ventana);
+ventana.addListener(eventosPulsado);
+	
+function eventosPulsado(dato){
+	if (dato.matches){
+		tamanho = 1;		
+	}
+	else{
+		tamanho = 0;
+	}
+}
+	
+addEventListener('mousemove', () =>{
+	var inputs = document.getElementsByTagName('input');
+	var postX = x-offsetX+100;
+	var postY = y-offsetY+15;
+	if (inputs[0].checked == true) {
+		document.getElementById('imgMotosierra').style.top = postY + 'px';
+		/*var postX = window.event.clientX + 10;*/
+		/*var postX = x+10;*/
+		document.getElementById('imgMotosierra').style.left = postX +'px';
+	}
+	if (inputs[1].checked == true) {
+		document.getElementById('imgEspada').style.top = postY +'px';
+
+		document.getElementById('imgEspada').style.left = postX +'px';
+	}
+	if (inputs[2].checked == true) {
+		document.getElementById('imgTijera').style.top = postY + 'px';
+		/*var postX = window.event.clientX + 10;*/
+		document.getElementById('imgTijera').style.left = postX +'px';
+	}
+});
+		
+addEventListener('click',()=>{
+
+if (corte == 0)
+{
+	var inputs = document.getElementsByTagName('input');
+	offsetX= x;
+	offsetY= y;
+	if (inputs[0].checked == true) {
+		document.getElementById('imgMotosierra').style.postion = 'absolute';
+		//document.getElementById('imgMotosierra').style.left = -x+'px';
+		document.getElementById('imgEspada').style.position = 'relative';
+		document.getElementById('imgEspada').style.left = '0px';
+		document.getElementById('imgEspada').style.top = '0px';
+		document.getElementById('imgTijera').style.position = 'relative';
+		document.getElementById('imgTijera').style.left = '0px';
+		document.getElementById('imgTijera').style.top = '0px';
+	}
+	if (inputs[1].checked == true) {
+		document.getElementById('imgMotosierra').style.visibility = 'relative';
+		document.getElementById('imgMotosierra').style.left = '0px';
+		document.getElementById('imgMotosierra').style.top = '0px';
+		document.getElementById('imgEspada').style.position = 'absolute';
+		//document.getElementById('imgEspada').style.left = -x+'px';
+		document.getElementById('imgTijera').style.position = 'relative';
+		document.getElementById('imgTijera').style.left = '0px';
+		document.getElementById('imgTijera').style.top = '0px';
+		
+	}
+	if (inputs[2].checked == true) {
+		document.getElementById('imgMotosierra').style.visibility = 'relative';
+		document.getElementById('imgMotosierra').style.left = '0px';
+		document.getElementById('imgMotosierra').style.top = '0px';
+		document.getElementById('imgEspada').style.position = 'relative';
+		document.getElementById('imgEspada').style.left = '0px';
+		document.getElementById('imgEspada').style.top = '0px';
+		document.getElementById('imgTijera').style.position = 'absolute';
+		//document.getElementById('imgTijera').style.left = -x+'px';
+	}
+}
+})
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
